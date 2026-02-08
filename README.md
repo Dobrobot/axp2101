@@ -44,3 +44,26 @@ sensor:
     battery_charging:
       name: "Battery Charging"
 ```
+
+### Brightness control example
+
+```yaml
+number:
+  - platform: template
+    name: "LCD Brightness"
+    id: lcd_brightness
+    min_value: 0
+    max_value: 100
+    step: 1
+    unit_of_measurement: "%"
+    optimistic: true
+    restore_value: true
+    initial_value: 75
+    set_action:
+      - lambda: |-
+          if (x > 0.0f) {
+            id(last_brightness) = x;
+          }
+          id(backlight_state) = x > 0.0f;
+          id(axp2101_pmu).apply_brightness(x / 100.0f);
+```
