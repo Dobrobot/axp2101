@@ -4,6 +4,13 @@ Custom ESPHome component for the X-Powers AXP2101 PMU. It is used on M5Stack Cor
 and exposes battery voltage/level/charging state plus backlight control (BLDO1) via
 the `brightness` setting.
 
+## Backlight control (BLDO1)
+
+Core2 v1.1 uses AXP2101 BLDO1 to power the LCD backlight (LED_A). This component maps
+`brightness` (0.0..1.0) to BLDO1 output voltage (0.5..3.5V). Zero disables BLDO1.
+This makes it possible to control backlight brightness via the PMU, which is not
+available through the display controller registers.
+
 ## Example usage
 
 ```yaml
