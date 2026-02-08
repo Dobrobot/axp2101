@@ -11,6 +11,19 @@ Core2 v1.1 uses AXP2101 BLDO1 to power the LCD backlight (LED_A). This component
 This makes it possible to control backlight brightness via the PMU, which is not
 available through the display controller registers.
 
+Example with brightness:
+
+```yaml
+sensor:
+  - platform: axp2101
+    id: axp2101_pmu
+    model: M5CORE2
+    address: 0x34
+    i2c_id: bus_internal
+    update_interval: 30s
+    brightness: 75%
+```
+
 ## Example usage
 
 ```yaml
